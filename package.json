@@ -1,0 +1,26 @@
+{
+  "name": "capstone-DueyTran",
+  "version": "1.0.0",
+  "description": "Your project description.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uark-backend-class/capstone-DueyTran.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uark-backend-class/capstone-DueyTran/issues"
+  },
+  "homepage": "https://github.com/uark-backend-class/capstone-DueyTran#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "mongoose": "^6.0.8",
+    "nodemon": "^2.0.13"
+  }
+}
