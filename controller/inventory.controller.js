@@ -14,16 +14,16 @@ exports.instructionalVideos = (req, res) => {
 };
 
 exports.picReferences = (req, res) => {
-    res.render("picture-page", );
+    res.render("picture-page");
 }
 
 exports.addItem = async (req, res) => {
     if (req.params.id) {
         const inventory = await Inventory.findById(req.params.id).lean();
-        res.render("add-update-item", { title: "Update Item", inventory });
+        res.render("update-item", { title: "Update Item", inventory });
     }
     else {
-        res.render("add-update-item", { title: "Add Item" });
+        res.render("add-item", { title: "Add Item" });
     }
     
 };
@@ -49,3 +49,13 @@ exports.deleteItem = async (req, res) => {
     await Inventory.findByIdAndDelete(req.params.id);
     res.redirect("/inventoryPage");
 }
+
+exports.sentForm = (req, res) => {    
+    res.send(req.body.item + " " + req.body.quantity + " " + req.body.unitType);
+ };
+ 
+ exports.newForm = (req, res) => {    
+     res.render("new-form", { title: "New Inventory Order" })
+ };
+ 
+ 
