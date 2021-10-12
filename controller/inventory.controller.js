@@ -5,8 +5,12 @@ exports.mainPage = (req, res) => {
 };
 
 exports.inventoryList = async (req, res) => {
-    const inventory = await Inventory.find().lean();
-    res.render("inventory-page", { title: "Inventory", inventory });
+    try {
+        const inventory = await Inventory.find().lean();
+        res.render("inventory-page", { title: "Inventory List", inventory, email: req.user && req.user.email });
+    } catch (err) {
+        res.status(401).json({ message: "Must be logged in." });
+    }     
 };
 
 exports.instructionalVideos = (req, res) => {
@@ -15,15 +19,15 @@ exports.instructionalVideos = (req, res) => {
 
 exports.picReferences = (req, res) => {
     res.render("picture-page");
-}
+};
 
 exports.addItem = async (req, res) => {
     if (req.params.id) {
         const inventory = await Inventory.findById(req.params.id).lean();
-        res.render("update-item", { title: "Update Item", inventory });
+        res.render("update-item", { title: "Update Item", inventory});
     }
     else {
-        res.render("add-item", { title: "Add Item" });
+        res.render("add-item", { title: "Add Item"});
     }
     
 };
@@ -39,7 +43,7 @@ exports.updateItem = async (req, res) => {
             unitType: req.body.unitType,
         });  
 
-        await inventory.save();
+        await inventory.save();          
     };    
     
     res.redirect("/inventoryPage");
@@ -48,10 +52,10 @@ exports.updateItem = async (req, res) => {
 exports.deleteItem = async (req, res) => {
     await Inventory.findByIdAndDelete(req.params.id);
     res.redirect("/inventoryPage");
-}
+};
 
 exports.sentForm = (req, res) => {    
-    res.send(req.body.item + " " + req.body.quantity + " " + req.body.unitType);
+    res.send(req.body.item + " " + req.body.quantity + " " + req.body.unitType + " " + req.body.miscItems);
  };
  
  exports.newForm = (req, res) => {    

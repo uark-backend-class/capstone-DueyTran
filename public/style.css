@@ -8,3 +8,14 @@
     height: auto;    
 }
 
+#login {
+    float: right;
+}
+
+#register {
+    float: right;
+}
+
+#logout {
+    float: right;
+}
