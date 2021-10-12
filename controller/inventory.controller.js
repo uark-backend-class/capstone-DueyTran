@@ -6,7 +6,7 @@ exports.mainPage = (req, res) => {
 
 exports.inventoryList = async (req, res) => {
     const inventory = await Inventory.find().lean();
-    res.render("inventory-page", { title: "Inventory List", inventory });
+    res.render("inventory-page", { title: "Inventory", inventory });
 };
 
 exports.instructionalVideos = (req, res) => {
@@ -55,7 +55,7 @@ exports.sentForm = (req, res) => {
  };
  
  exports.newForm = (req, res) => {    
-     res.render("new-form", { title: "New Inventory Order" })
+     res.render("new-form", { title: "Inventory Order" })
  };
  
  

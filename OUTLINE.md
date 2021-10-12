@@ -23,17 +23,17 @@
 . Add inventory
 . Write code to track inventory
 . Write code to order more items when quantity is low
-. Send out via email. Have a form field to send to any email in the UI.
+. Send out via email. Have a form field to send to any email in the UI
 
 
-. Have auth user middleware for updating/deleting itmes.
+. Have auth user middleware for updating/deleting itmes
 
 . Add instructional videos and picture references 
 
 . Create external css file.
-. Use bootstrap to make UI "purdy".
+. Use bootstrap to make UI "purdy"
 
-CSS IDEAS
+HTML IDEAS
 . add increment buttons to increase by 1
-. for unit, add /option for either to order by cases or pieces
+. for unitType, add <select> for cases, pieces, bags
 

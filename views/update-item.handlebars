@@ -1,13 +1,23 @@
 <h1>{{ title }}</h1>
 <form action="/updatePage" method="POST">
-    <div>Item:<input type="text" name="item" id="item" value="{{ inventory.item }}" readonly></div>
-    <div>Quantity:<input type="number" name="quantity" id="quantity" value="{{ inventory.quantity }}"></div>
-    <div>Unit Type:
-        <select name="unitType" id="unitType" value="{{ inventory.unitType }}">
+    <label for="item">Item:</label>
+    <div class="form-group">
+        <input class="form-control" type="text" name="item" id="item" value="{{ inventory.item }}" readonly>
+    </div>
+    <label for="quantity">Quantity:</label>
+    <div class="form-group">
+        <input class="form-control" type="number" name="quantity" id="quantity" value="{{ inventory.quantity }}">
+        </div>
+    <label for="unitType">Unit Type:</label>
+    <div class="form-group">
+        <select class="form-control" name="unitType" id="unitType" value="{{ inventory.unitType }}">
             <option value="Cases">Cases</option>
             <option label="Pieces" value="Pieces"></option>
             <option value="Bags">Bags</option>
-        </select></div>
+        </select>
+    </div>
     <input type="hidden" name="id" value="{{ inventory._id }}">
-    <div><button type="submit">SUBMIT</button></div>
+    <div>
+        <button type="submit">SUBMIT</button>
+    </div>
 </form>

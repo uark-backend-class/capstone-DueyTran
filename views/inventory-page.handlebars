@@ -1,7 +1,7 @@
 <h1>{{ title }}</h1>
 <a href="/newForm"><button>NEW</button></a><br>
 <div>
-    <table border="1">
+    <table border="1" id="inventoryTable" class="table table-hover">
     <thead>
         <tr>
             <th>Item</th>
@@ -16,12 +16,15 @@
                 <td>{{ this.item }}</td>
                 <td>{{ this.quantity }}</td>
                 <td>{{ this.unitType }}</td>
-                <td><a href="/update/{{ this._id }}"><button>UPDATE</button></a></td>
-                <td><a href="/delete/{{ this._id }}"><button>DELETE</button></a></td>
-            </tr>
-            
+                <td><a class="btn btn-primary" href="/update/{{ this._id }}">UPDATE</a></td>
+                <td><a class="btn btn-danger btn-sm" href="/delete/{{ this._id }}">DELETE</a></td>
+            </tr>            
         {{/each}}        
-    </tbody>
+    </tbody>    
 </div>
-</table><br>
+</table>
+<br>
 <a href="/addItemPage"><button>Add Item</button></a>
+<br>
+<br>
+<br>

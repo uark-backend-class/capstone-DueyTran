@@ -10,7 +10,7 @@ const app = express();
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
-app.use(express.static("./views/images"))
+app.use(express.static("./public"))
 app.use(express.urlencoded( { extended: true } ));
 app.use(routes);
 
