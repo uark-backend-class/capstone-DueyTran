@@ -30,7 +30,7 @@
 
 . Add instructional videos and picture references 
 
-. Create external css file.
+. Create external CSS file.
 . Use bootstrap to make UI "purdy"
 
 HTML IDEAS

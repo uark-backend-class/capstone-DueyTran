@@ -1,11 +1,11 @@
-<h1>{{ title }}</h1>
+<h1 id="newInvTitle">{{ title }}</h1>
 <a href="/logout" id="logout"><button>Sign Out</button></a>
 <form action="/sentForm" method="POST">
     <div>
         <button type="reset">RESET</button>
     </div>
     <br/>
-    <table border="1" class="table table-hover">
+    <table border="1" class="table table-striped">
         <tr>
             <td>
                 <div class="form-group">
@@ -862,7 +862,7 @@
     <div class="form-group">
     <textarea class="form-control" type="text" rows="5" cols="79" name="miscItems"></textarea>
     </div><br>
-    <div><button type="submit">SUBMIT</button></div>
+    <div><button type="submit" class="btn btn-success">SEND</button></div>
 </form>
 <br>
 <br>

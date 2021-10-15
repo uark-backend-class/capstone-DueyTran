@@ -1,4 +1,5 @@
 const Inventory = require("../models/Inventory");
+const User = require("../models/User");
 
 exports.mainPage = (req, res) => {
     res.render("main-page");
@@ -60,6 +61,4 @@ exports.sentForm = (req, res) => {
  
  exports.newForm = (req, res) => {    
      res.render("new-form", { title: "Inventory Order" })
- };
- 
- 
+ }; 

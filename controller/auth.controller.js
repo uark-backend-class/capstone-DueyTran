@@ -6,14 +6,15 @@ exports.registrationPage = (req, res) => {
 };
 
 exports.register = async (req, res, next) => {
-    const user = new User({ email: req.body.email });
+    const user = new User({ email: req.body.email, admin});
     await User.register(user, req.body.password);
-
+    
     next();
 };
 
 exports.login = passport.authenticate("local", {
     failureRedirect: "/login",
+    failureFlash: "Bad username or password.",
     successRedirect: "/inventoryPage",
 });
 
@@ -27,11 +28,21 @@ exports.isAuthenticated = (req, res, next) => {
 };
 
 exports.loginPage = (req, res) => {
-    res.render("login");
+    res.render("login", { errorMessages: req.flash("error") });
 };
 
 exports.logout = (req, res) => {
     req.logout();
     res.redirect("/");
+};
+
+exports.isAuthorized = (req, res, next) => {
+    if (req.user.admin) {
+        next();
+    }
+    
+    else {
+        res.status(401).send();
+    };
 };
 

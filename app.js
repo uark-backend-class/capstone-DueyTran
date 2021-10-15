@@ -1,9 +1,14 @@
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+};
+
 const express = require("express");
 const routes = require("./routes");
 const exphbs = require("express-handlebars");
 const User = require("./models/User");
 const passport = require("passport");
 const session = require("express-session");
+const flash = require("connect-flash");
 
 require("./db");
 
@@ -21,11 +26,13 @@ passport.deserializeUser(async (id, done) => {
 const app = express();
 app.use(
     session({
-        secret: "shogunAPI"
+        secret: process.env.SESSION_SECRET
     })
 );
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
