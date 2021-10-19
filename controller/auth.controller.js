@@ -42,7 +42,13 @@ exports.isAuthorized = (req, res, next) => {
     }
     
     else {
-        res.status(401).send();
+        res.status(401).render("notAuthPage");
     };
 };
 
+
+exports.googleLogin = passport.authenticate("google", {
+    scope: ["profile", "email"]
+});
+
+exports.googleRedirect = passport.authenticate("google");

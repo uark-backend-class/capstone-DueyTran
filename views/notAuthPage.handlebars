@@ -1,0 +1,28 @@
+<body id="notAuthPageBody">
+    <br>
+    <br>
+    <div>
+        <a href="/" id="mainPageBtn"><button>Main Page</button></a>  
+    </div>
+    <br>
+    <div>        
+        <h1 id="notAuthTitle">YOU ARE NOT AUTHORIZED!</h1>        
+    </div>  
+    <div id="stopSign">
+        <img src="/images/STOP SIGN.jpg" alt="stop sign"  class="img-responsive center-block">
+    </div>    
+    <div>
+        <h1 id="loginPageBtn">Login</h1>
+            <form action="/login" method="POST">
+                <label for="email">Email:</label>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" id="email" placeholder="abc@gmail.com">
+                </div>
+                <label for="password">Password:</label>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" id="password">
+                </div>                
+                <button type="submit">Login</button>                                 
+            </form>           
+    </div>     
+</body>

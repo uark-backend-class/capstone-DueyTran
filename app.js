@@ -9,9 +9,28 @@ const User = require("./models/User");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 require("./db");
 
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "/auth/google/redirect",
+},
+    async function(accessToken, refreshToken, profile, cb) {
+        let user = await User.findOne({ email: profile._json.email });
+
+        if (user) {
+            cb(null, user);
+        }
+        else {
+            let newUser = new User({ googleId: profile.id, email: profile._json.email });
+            await newUser.save();
+            cb(null, newUser);
+        }
+    }
+));
 passport.use(User.createStrategy());
 
 passport.serializeUser((user, done) => {

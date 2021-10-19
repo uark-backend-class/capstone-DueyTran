@@ -1,17 +1,15 @@
+require("dotenv").config();
 const Inventory = require("../models/Inventory");
 const User = require("../models/User");
+const emailModule = require("../emailModule");
 
 exports.mainPage = (req, res) => {
     res.render("main-page");
 };
 
 exports.inventoryList = async (req, res) => {
-    try {
-        const inventory = await Inventory.find().lean();
-        res.render("inventory-page", { title: "Inventory List", inventory, email: req.user && req.user.email });
-    } catch (err) {
-        res.status(401).json({ message: "Must be logged in." });
-    }     
+    const inventory = await Inventory.find().lean();
+    res.render("inventory-page", { title: "Inventory List", inventory, email: req.user && req.user.email });        
 };
 
 exports.instructionalVideos = (req, res) => {
@@ -56,9 +54,15 @@ exports.deleteItem = async (req, res) => {
 };
 
 exports.sentForm = (req, res) => {    
-    res.send(req.body.item + " " + req.body.quantity + " " + req.body.unitType + " " + req.body.miscItems);
- };
+    res.send(req.body);
+    emailModule.send(process.env.TEST_EMAIL, JSON.stringify(req.body));    
+};
  
  exports.newForm = (req, res) => {    
-     res.render("new-form", { title: "Inventory Order" })
- }; 
+     res.render("new-form")
+ };
+ 
+exports.registeredUsers = async (req, res) => { 
+    const user = await User.find().lean();
+    res.json(user);
+};
