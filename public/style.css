@@ -84,6 +84,10 @@
     float: right;
 }
 
+#sendBtn {
+    float: right;
+}
+
 /* Update Item Page */
 #updateItemTitle {
     text-align: center;

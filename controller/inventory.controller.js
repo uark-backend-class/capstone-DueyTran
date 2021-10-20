@@ -2,6 +2,7 @@ require("dotenv").config();
 const Inventory = require("../models/Inventory");
 const User = require("../models/User");
 const emailModule = require("../emailModule");
+const twilioModule = require("../twilioModule");
 
 exports.mainPage = (req, res) => {
     res.render("main-page");
@@ -53,9 +54,16 @@ exports.deleteItem = async (req, res) => {
     res.redirect("/inventoryPage");
 };
 
-exports.sentForm = (req, res) => {    
+exports.sentForm = (req, res) => { 
+//     if (req.body.item === "") {
+
+// }  
+//     else {
+//         res.send(req.body.item)
+//     }
     res.send(req.body.item)
-    emailModule.send(req.body.email, JSON.stringify(req.body));    
+    // emailModule.send(req.body.email, JSON.stringify(req.body.item));
+    twilioModule.sendSMS(req.body.phone, req.body);  
 };
  
  exports.newForm = (req, res) => {    
