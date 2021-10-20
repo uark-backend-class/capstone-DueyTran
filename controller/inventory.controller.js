@@ -9,7 +9,7 @@ exports.mainPage = (req, res) => {
 
 exports.inventoryList = async (req, res) => {
     const inventory = await Inventory.find().lean();
-    res.render("inventory-page", { title: "Inventory List", inventory, email: req.user && req.user.email });        
+    res.render("inventory-page", { title: "Inventory", inventory, email: req.user && req.user.email });        
 };
 
 exports.instructionalVideos = (req, res) => {
@@ -54,8 +54,8 @@ exports.deleteItem = async (req, res) => {
 };
 
 exports.sentForm = (req, res) => {    
-    res.send(req.body);
-    emailModule.send(process.env.TEST_EMAIL, JSON.stringify(req.body));    
+    res.send(req.body.item)
+    emailModule.send(req.body.email, JSON.stringify(req.body));    
 };
  
  exports.newForm = (req, res) => {    

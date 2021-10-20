@@ -1,34 +1,39 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
+const { google} = require("googleapis");
 
-// let transport = nodemailer.createTransport({
-//     host: "smtp.mailtrap.io",
-//     port: 2525,
-//     auth: {
-//         user: process.env.MAILTRAP_USERNAME,
-//         pass: process.env.MAILTRAP_PASSWORD,
-//     }
-//   });
 
-let transport = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    auth: {
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID
+const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET
+const REDIRECT_URI = "https://developers.google.com/oauthplayground"
+const REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN
+
+const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+
+exports.send = async (to, body) => {
+
+  try {
+    const accessToken = await oAuth2Client.getAccessToken()
+    const  transport = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
         type: "OAuth2",
         user: process.env.MY_EMAIL,
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        refreshToken: process.env.GOOGLE_REFRESH_TOEKEN,
-        accessToken: process.env.GOOGLE_ACCESS_TOKEN,
-    }
-  });
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken,     
+      }
+    })
 
-
-
-  exports.send = (to, body) => {    
     transport.sendMail({
-        to,        
-        subject: "Shogun Fayettevill Inventory Order " + Date(),
-        from: "shogunfayetteville@gmail.com",
-        html: body,        
-    });
-  }
+      to,
+      subject: "Shogun Fayetteville Inventory Order " + Date(),
+      html: body,
+    })
+
+}  catch (error) {
+    return error;
+  };
+};
