@@ -14,8 +14,8 @@ router.get("/auth/google/redirect", auth.googleRedirect, (req, res) => res.redir
 router.post("/register", auth.register, auth.login);
 router.post("/login", auth.login);
 
-router.use(auth.isAuthenticated);
-router.use(auth.isAuthorized);
+// router.use(auth.isAuthenticated);
+// router.use(auth.isAuthorized);
 router.get("/addItemPage", inventory.addItem);
 router.get("/delete/:id", inventory.deleteItem)
 router.get("/update/:id", inventory.addItem);
