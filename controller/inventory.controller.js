@@ -55,15 +55,10 @@ exports.deleteItem = async (req, res) => {
 };
 
 exports.sentForm = (req, res) => { 
-//     if (req.body.item === "") {
-
-// }  
-//     else {
-//         res.send(req.body.item)
-//     }
-    res.send(req.body.item)
-    // emailModule.send(req.body.email, JSON.stringify(req.body.item));
-    twilioModule.sendSMS(req.body.phone, req.body);  
+    let email = req.body.email
+    res.send(req.body.items)
+    emailModule.send(req.body.email, JSON.stringify(req.body.items));
+    twilioModule.sendSMS(req.body.phone, "New inventory order from Shogun of Fayetteville sent to: " + `${email}`);  
 };
  
  exports.newForm = (req, res) => {    
