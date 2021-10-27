@@ -51,4 +51,4 @@ exports.isAuthorized = (req, res, next) => {
 //     scope: ["profile", "email"]
 // });
 
-exports.googleRedirect = passport.authenticate("google");
+// exports.googleRedirect = passport.authenticate("google");
