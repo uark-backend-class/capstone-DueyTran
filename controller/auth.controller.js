@@ -6,7 +6,7 @@ exports.registrationPage = (req, res) => {
 };
 
 exports.register = async (req, res, next) => {
-    const user = new User({ email: req.body.email, admin});
+    const user = new User({ email: req.body.email, }); // removed admin as second param - const user = new User({ email: req.body.email, admin });
     await User.register(user, req.body.password);
     
     next();
@@ -47,8 +47,8 @@ exports.isAuthorized = (req, res, next) => {
 };
 
 
-exports.googleLogin = passport.authenticate("google", {
-    scope: ["profile", "email"]
-});
+// exports.googleLogin = passport.authenticate("google", {
+//     scope: ["profile", "email"]
+// });
 
 exports.googleRedirect = passport.authenticate("google");
