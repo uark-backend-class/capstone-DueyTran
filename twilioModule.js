@@ -9,6 +9,6 @@ exports.sendSMS = (phone, message) => {
     return client.messages.create({
         to: phone,
         from: process.env.TWILIO_TRIAL_PHONE_NUMBER,    
-        body: Date() + " " + message,     
+        body: message,     
     });
 };

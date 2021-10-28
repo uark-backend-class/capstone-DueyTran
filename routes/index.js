@@ -9,8 +9,8 @@ router.get("/picReferences" , inventory.picReferences);
 router.get("/register", auth.registrationPage);
 router.get("/login", auth.loginPage);
 router.get("/logout", auth.logout);
-// router.get("/auth/google", auth.googleLogin);
-// router.get("/auth/google/redirect", auth.googleRedirect, (req, res) => res.redirect("/inventoryPage"));
+router.get("/auth/google", auth.googleLogin);
+router.get("/auth/google/redirect", auth.googleRedirect, (req, res) => res.redirect("/inventoryPage"));
 router.post("/register", auth.register, auth.login);
 router.post("/login", auth.login);
 

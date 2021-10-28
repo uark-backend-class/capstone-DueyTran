@@ -29,7 +29,7 @@ exports.send = async (to, body) => {
 
     transport.sendMail({
       to,
-      subject: "Shogun Fayetteville Inventory Order " + Date(),
+      subject: "Shogun Fayetteville Inventory Order",
       html: body,
     })
 
