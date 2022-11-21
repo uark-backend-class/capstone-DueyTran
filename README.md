@@ -1,6 +1,6 @@
 Shogun Inventory API
 
-The problems I'm trying to solve.
+The problems I'm trying to solve...
 
 1. Make tracking and ordering inventory easier.
 
